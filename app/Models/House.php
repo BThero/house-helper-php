@@ -18,4 +18,9 @@ class House extends Model
         'name',
         'description',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withPivot('user_role');
+    }
 }

@@ -10,6 +10,13 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <p>You're looking at your houses!</p>
+
+                    @if (count($houses) > 1)
+                        @foreach ($houses as $house)
+                            <p>This is house {{ $house->id }}</p>
+                        @endforeach
+                    @endif
+
                     <a href="{{ url('houses/create') }}">Create a new house</a>
                 </div>
             </div>
