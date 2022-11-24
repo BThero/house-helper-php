@@ -15,7 +15,7 @@ class HouseController extends Controller
      */
     public function index()
     {
-        return view('houses/houses');
+        return view('houses/houses', ['houses' => House::all()]);
     }
 
     /**
@@ -44,8 +44,9 @@ class HouseController extends Controller
         $house = House::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
-            'owner_id' => Auth::id(),
         ]);
+
+        $house->users()->attach(Auth::id(), ['user_role' => 'owner']);
 
         return redirect()->action([HouseController::class, 'index']);
     }
