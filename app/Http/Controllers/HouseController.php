@@ -74,8 +74,6 @@ class HouseController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        error_log('hello?');
-
         $validated = $request->validate([
             'name' => ['required', 'min:2', 'max:255'],
             'description' => ['max:255'],
@@ -87,6 +85,7 @@ class HouseController extends Controller
             'description' => $request->input('description'),
         ]);
         $house->save();
+
         return redirect()->action([HouseController::class, 'index']);
     }
 
@@ -94,5 +93,22 @@ class HouseController extends Controller
     {
         $house = Auth::user()->houses->find($id);
         return view('houses/house', ['house' => $house, 'me' => Auth::user()]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $house = Auth::user()->houses->find($id);
+
+        if ($house) {
+            $house->delete();
+        }
+
+        return redirect()->action([HouseController::class, 'index']);
     }
 }
