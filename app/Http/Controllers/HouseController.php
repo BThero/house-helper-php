@@ -15,7 +15,8 @@ class HouseController extends Controller
      */
     public function index()
     {
-        return view('houses/houses', ['houses' => House::all()]);
+        Auth::user()->load('houses');
+        return view('houses/houses', ['houses' => Auth::user()->houses]);
     }
 
     /**
@@ -49,5 +50,49 @@ class HouseController extends Controller
         $house->users()->attach(Auth::id(), ['user_role' => 'owner']);
 
         return redirect()->action([HouseController::class, 'index']);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $house = Auth::user()->houses->find($id);
+        $house->load('users');
+        return view('houses/house-edit', ['house' => $house]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, int $id)
+    {
+        error_log('hello?');
+
+        $validated = $request->validate([
+            'name' => ['required', 'min:2', 'max:255'],
+            'description' => ['max:255'],
+        ]);
+
+        $house = Auth::user()->houses->find($id);
+        $house->update([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+        ]);
+        $house->save();
+        return redirect()->action([HouseController::class, 'index']);
+    }
+
+    public function show($id)
+    {
+        $house = Auth::user()->houses->find($id);
+        return view('houses/house', ['house' => $house, 'me' => Auth::user()]);
     }
 }
