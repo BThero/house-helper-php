@@ -16,6 +16,7 @@ class HouseController extends Controller
     public function index()
     {
         Auth::user()->load('houses');
+
         return view('houses/houses', ['houses' => Auth::user()->houses]);
     }
 
@@ -62,6 +63,7 @@ class HouseController extends Controller
     {
         $house = Auth::user()->houses->find($id);
         $house->load('users');
+
         return view('houses/house-edit', ['house' => $house]);
     }
 
@@ -92,6 +94,7 @@ class HouseController extends Controller
     public function show($id)
     {
         $house = Auth::user()->houses->find($id);
+
         return view('houses/house', ['house' => $house, 'me' => Auth::user()]);
     }
 
@@ -99,7 +102,7 @@ class HouseController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
