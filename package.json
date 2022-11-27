@@ -4,8 +4,7 @@
         "dev": "vite",
         "build": "vite build",
         "format": "./vendor/bin/pint -v",
-        "format:test": "./vendor/bin/pint --test",
-        "prepare": "husky install"
+        "format:test": "./vendor/bin/pint --test"
     },
     "devDependencies": {
         "@tailwindcss/aspect-ratio": "^0.4.2",
