@@ -18,4 +18,14 @@ class HouseInvite extends Model
         'user_id',
         'house_id',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function house()
+    {
+        return $this->hasOne(House::class, 'id', 'house_id');
+    }
 }
