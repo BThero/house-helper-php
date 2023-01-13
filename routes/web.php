@@ -24,6 +24,8 @@ Route::get('/dashboard', function () {
 
 Route::resource('/houses', App\Http\Controllers\HouseController::class)->middleware(['auth', 'verified']);
 
+Route::resource('/house-invites', App\Http\Controllers\HouseInviteController::class)->middleware(['auth', 'verified']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

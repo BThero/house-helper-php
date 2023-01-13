@@ -27,6 +27,28 @@
                                 @endif
                             </div>
                         @endforeach
+                        <div class="mt-3">
+                            <form method="POST" action="{{ route('house-invites.store') }}" class="flex flex-col m-auto w-[50%] gap-2">
+                                @csrf
+                                <input type="hidden" name="house_id" value="{{$house->id}}" />
+
+                                <div class="flex flex-col gap-1">
+                                    <label for="username">Invite user</label>
+                                    <input class="rounded-lg" type="text" name="username" id="username" />
+                                    @error('username')
+                                    <p class="text-red-500">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <x-primary-button>Invite</x-primary-button>
+
+                                @isset ($message)
+                                    <div>
+                                        <p>{{ $message }}</p>
+                                    </div>
+                                @endisset
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
