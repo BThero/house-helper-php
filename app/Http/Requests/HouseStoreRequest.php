@@ -26,7 +26,7 @@ class HouseStoreRequest extends FormRequest
         return [
             'name' => ['required', 'min:2', 'max:255'],
             'description' => ['max:255'],
-            'city' => ['required', 'min:2', 'max: 100'],
+            'city' => ['max: 100'],
             'address' => ['max:100'],
         ];
     }
