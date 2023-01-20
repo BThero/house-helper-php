@@ -17,6 +17,22 @@
             </div>
 
             <div class="flex flex-col gap-1">
+                <label for="city">City<span class="text-red-500">*</span></label>
+                <input class="rounded-lg" type="text" name="city" id="city" required placeholder="city" />
+                @error('city')
+                <p class="text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label for="address">Address</label>
+                <input class="rounded-lg" type="text" name="address" id="address" placeholder="address" />
+                @error('address')
+                <p class="text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="flex flex-col gap-1">
                 <label for="description">Description</label>
                 <textarea class="rounded-lg" name="description" id="description" cols="10" rows="2" placeholder="description"></textarea>
                 @error('description')
