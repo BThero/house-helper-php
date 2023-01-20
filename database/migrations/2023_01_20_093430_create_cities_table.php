@@ -10,8 +10,9 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->string('country');
-            $table->string('name');
+            $table->string('country')->index();
+            $table->string('name')->index();
+            $table->unique(['country', 'name']);
         });
     }
 };
