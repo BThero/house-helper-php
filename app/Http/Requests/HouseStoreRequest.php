@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\CityExists;
 use Illuminate\Foundation\Http\FormRequest;
 
 class HouseStoreRequest extends FormRequest

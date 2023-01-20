@@ -28,7 +28,7 @@ class HouseController extends Controller
 
         if ($request->input('city')) {
             $cityId = City::where([
-                'full_name' => $request->input('city')
+                'full_name' => $request->input('city'),
             ])->first()->id;
         }
 

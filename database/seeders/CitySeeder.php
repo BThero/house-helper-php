@@ -22,7 +22,7 @@ class CitySeeder extends Seeder
                     $allCities[] = [
                         'country' => $country,
                         'name' => $city,
-                        'full_name' => $country . ", " . $city,
+                        'full_name' => $country.', '.$city,
                     ];
 
                     if (count($allCities) === 100) {

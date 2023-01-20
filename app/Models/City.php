@@ -17,6 +17,6 @@ class City extends Model
     }
 
     protected $fillable = [
-        'name', 'country', 'full_name'
+        'name', 'country', 'full_name',
     ];
 }
