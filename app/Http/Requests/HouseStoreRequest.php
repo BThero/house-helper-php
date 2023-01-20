@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CityExists;
 use Illuminate\Foundation\Http\FormRequest;
 
 class HouseStoreRequest extends FormRequest
@@ -26,7 +27,7 @@ class HouseStoreRequest extends FormRequest
         return [
             'name' => ['required', 'min:2', 'max:255'],
             'description' => ['max:255'],
-            'city' => ['max: 100'],
+            'city' => ['nullable', 'exists:cities,full_name'],
             'address' => ['max:100'],
         ];
     }

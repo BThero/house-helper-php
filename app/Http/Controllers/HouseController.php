@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\HouseStoreRequest;
+use App\Models\City;
 use App\Models\House;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,10 +24,18 @@ class HouseController extends Controller
 
     public function store(HouseStoreRequest $request)
     {
+        $cityId = null;
+
+        if ($request->input('city')) {
+            $cityId = City::where([
+                'full_name' => $request->input('city')
+            ])->first()->id;
+        }
+
         $house = House::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
-            'city' => $request->input('city'),
+            'city_id' => $cityId,
             'address' => $request->input('address'),
         ]);
 

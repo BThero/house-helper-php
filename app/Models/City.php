@@ -11,7 +11,12 @@ class City extends Model
 
     use HasFactory;
 
+    public function houses()
+    {
+        return $this->hasMany(House::class);
+    }
+
     protected $fillable = [
-        'name', 'country',
+        'name', 'country', 'full_name'
     ];
 }
