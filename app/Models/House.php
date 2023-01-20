@@ -17,10 +17,17 @@ class House extends Model
     protected $fillable = [
         'name',
         'description',
+        'address',
+        'city',
     ];
 
     public function users()
     {
         return $this->belongsToMany(User::class)->withPivot('user_role');
     }
+
+    public static $rules = [
+        'address' => 'string',
+        'city' => 'required|string',
+    ];
 }
