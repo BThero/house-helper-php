@@ -18,7 +18,7 @@ class House extends Model
         'name',
         'description',
         'address',
-        'city',
+        'city_id',
     ];
 
     public function users()
@@ -26,8 +26,12 @@ class House extends Model
         return $this->belongsToMany(User::class)->withPivot('user_role');
     }
 
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
     public static $rules = [
         'address' => 'string',
-        'city' => 'required|string',
     ];
 }

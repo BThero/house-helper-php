@@ -12,6 +12,8 @@ return new class extends Migration
             $table->id();
             $table->string('country');
             $table->string('name');
+            $table->string('full_name')->index();
+            $table->unique(['full_name']);
         });
     }
 };
