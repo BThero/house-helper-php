@@ -1,4 +1,4 @@
-<x-app-layout :usesLivewire="true" title='lol?'>
+<x-app-layout :usesLivewire="true">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Create a new house') }}
@@ -16,13 +16,14 @@
                 @enderror
             </div>
 
-            <div class="flex flex-col gap-1">
-                <label for="city">City</label>
-                <input class="rounded-lg" type="text" name="city" id="city" placeholder="New York"/>
-                @error('city')
-                <p class="text-red-500">{{ $message }}</p>
-                @enderror
-            </div>
+            <livewire:city-search/>
+            {{--            <div class="flex flex-col gap-1">--}}
+            {{--                <label for="city">City</label>--}}
+            {{--                <input class="rounded-lg" type="text" name="city" id="city" placeholder="New York"/>--}}
+            {{--                @error('city')--}}
+            {{--                <p class="text-red-500">{{ $message }}</p>--}}
+            {{--                @enderror--}}
+            {{--            </div>--}}
 
             <div class="flex flex-col gap-1">
                 <label for="address">Address</label>
