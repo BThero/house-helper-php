@@ -17,13 +17,6 @@
             </div>
 
             <livewire:city-search/>
-            {{--            <div class="flex flex-col gap-1">--}}
-            {{--                <label for="city">City</label>--}}
-            {{--                <input class="rounded-lg" type="text" name="city" id="city" placeholder="New York"/>--}}
-            {{--                @error('city')--}}
-            {{--                <p class="text-red-500">{{ $message }}</p>--}}
-            {{--                @enderror--}}
-            {{--            </div>--}}
 
             <div class="flex flex-col gap-1">
                 <label for="address">Address</label>
