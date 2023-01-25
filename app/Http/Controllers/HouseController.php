@@ -12,7 +12,8 @@ class HouseController extends Controller
 {
     public function index()
     {
-        Auth::user()->load('houses');
+        Auth::user()->load('houses.city');
+        ray(Auth::user()->houses);
 
         return view('houses/houses', ['houses' => Auth::user()->houses]);
     }
