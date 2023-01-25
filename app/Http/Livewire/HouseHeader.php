@@ -26,8 +26,12 @@ class HouseHeader extends Component
         if ($city) {
             $api = new WeatherAPI();
             $response = $api->GetCityWeather($city->name);
-            $this->condition = $response->current->condition->text;
-            $this->temperature = $response->current->temp_c;
+
+            if ($response->ok()) {
+                $response = json_decode($response->body());
+                $this->condition = $response->current->condition->text;
+                $this->temperature = $response->current->temp_c;
+            }
         }
     }
 

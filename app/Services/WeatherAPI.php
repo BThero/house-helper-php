@@ -16,7 +16,7 @@ class WeatherAPI
             'q' => $city,
         ]);
 
-        return json_decode($response->body());
+        return $response;
     }
 
     public function GetCitiesWeather($cities)
