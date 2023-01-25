@@ -8,6 +8,7 @@ use Livewire\Component;
 class HouseList extends Component
 {
     public $houses;
+
     public $responses;
 
     public function mount()
@@ -17,7 +18,7 @@ class HouseList extends Component
         foreach ($this->houses as $house) {
             $city = $house->city;
 
-            if ($city && !isset($cities[$city->id])) {
+            if ($city && ! isset($cities[$city->id])) {
                 $cities[$city->id] = $city;
             }
         }

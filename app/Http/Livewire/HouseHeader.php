@@ -8,8 +8,11 @@ use Livewire\Component;
 class HouseHeader extends Component
 {
     public $house;
+
     public $condition;
+
     public $temperature;
+
     public $is_preloaded;
 
     public function mount()

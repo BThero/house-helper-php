@@ -11,7 +11,7 @@ class WeatherAPI
 
     public function GetCityWeather($city)
     {
-        $response = Http::get($this->api_url . 'current.json', [
+        $response = Http::get($this->api_url.'current.json', [
             'key' => env('WEATHER_API_KEY'),
             'q' => $city,
         ]);
@@ -23,7 +23,7 @@ class WeatherAPI
     {
         $responses = Http::pool(function (Pool $pool) use (&$cities) {
             return array_map(function ($city) use (&$pool) {
-                return $pool->as($city->full_name)->get($this->api_url . 'current.json', [
+                return $pool->as($city->full_name)->get($this->api_url.'current.json', [
                     'key' => env('WEATHER_API_KEY'),
                     'q' => $city->name,
                 ]);
@@ -39,7 +39,7 @@ class WeatherAPI
                 $parsed[$city->id] = json_decode($response->body());
             }
         }
-        
+
         return $parsed;
     }
 }
