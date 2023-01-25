@@ -12,8 +12,8 @@
                     class="border-2 mb-4 border-gray-500 rounded-lg">
                     @livewire('house-header', [
                         'house' => $house,
-                        'condition' => $house->city ? $responses[$house->city->id]->current->condition->text : null,
-                        'temperature' => $house->city ? $responses[$house->city->id]->current->temp_c : null,
+                        'condition' => $house->city && isset($responses[$house->city->id]) ? $responses[$house->city->id]->current?->condition?->text : null,
+                        'temperature' => $house->city && isset($responses[$house->city->id]) ? $responses[$house->city->id]->current?->temp_c : null,
                         'is_preloaded' => true
                     ])
                     <div class="p-1 px-3 flex flex-row justify-between items-center">
