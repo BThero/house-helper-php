@@ -12,7 +12,7 @@
         </button>
     </div>
     @if($selected === 'login')
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login.store') }}">
             @csrf
 
             <div>
@@ -61,7 +61,7 @@
     @endif
 
     @if($selected === 'register')
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register.store') }}">
             @csrf
 
             <div>
