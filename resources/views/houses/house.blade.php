@@ -11,6 +11,20 @@
     <div class="py-12">
         <div class="max-w-3xl mx-auto rounded-lg bg-white overflow-hidden shadow-sm">
             <livewire:house-header :house="$house"/>
+            <nav
+                class="flex flex-row items-center justify-between p-1 px-3 h-10 w-full drop-shadow-lg border-b-2 border-gray-700">
+                <a class="underline text-gray-900 hover:text-gray-700" href="{{ route('houses.edit', $house->id) }}">Edit
+                    House</a>
+                @if($house->pivot->user_role === 'owner')
+                    <form method="POST" action="{{ route('houses.destroy', $house->id) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button class="text-red-500 hover:text-red-400 underline">
+                            Delete House
+                        </button>
+                    </form>
+                @endif
+            </nav>
             <div class="p-6 text-gray-900 sm:px-6 lg:px-8 ">
                 <div>
                     <p class="text-lg mb-2">Members:</p>
