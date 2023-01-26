@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HouseController;
+use App\Http\Controllers\KickUserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +24,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('/houses', App\Http\Controllers\HouseController::class)->middleware(['auth', 'verified']);
+Route::post('/houses/kick', KickUserController::class)->middleware(['auth', 'verified']);
+Route::resource('/houses', HouseController::class)->middleware(['auth', 'verified']);
 
 Route::resource('/house-invites', App\Http\Controllers\HouseInviteController::class)->middleware(['auth', 'verified']);
 
