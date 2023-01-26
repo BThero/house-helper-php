@@ -12,8 +12,9 @@
         <div class="max-w-3xl mx-auto rounded-lg bg-white overflow-hidden shadow-sm">
             <livewire:house-header :house="$house"/>
             <nav
-                class="flex flex-row items-center justify-between p-1 px-2 h-10 w-full drop-shadow-lg border-b-2 border-gray-700">
-                <p>Nav</p>
+                class="flex flex-row items-center justify-between p-1 px-3 h-10 w-full drop-shadow-lg border-b-2 border-gray-700">
+                <a class="underline text-gray-900 hover:text-gray-700" href="{{ route('houses.edit', $house->id) }}">Edit
+                    House</a>
                 @if($house->pivot->user_role === 'owner')
                     <form method="POST" action="{{ route('houses.destroy', $house->id) }}">
                         @csrf

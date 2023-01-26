@@ -10,7 +10,7 @@
             @csrf
             <div class="flex flex-col gap-1">
                 <label for="name">Name<span class="text-red-500">*</span></label>
-                <input class="rounded-lg" type="text" name="name" id="name" required placeholder="John Smith"/>
+                <input class="rounded-lg" type="text" name="name" id="name" required placeholder="My awesome house"/>
                 @error('name')
                 <p class="text-red-500">{{ $message }}</p>
                 @enderror

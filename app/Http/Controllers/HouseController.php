@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\HouseStoreRequest;
 use App\Models\City;
 use App\Models\House;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HouseController extends Controller
@@ -52,18 +51,24 @@ class HouseController extends Controller
         return view('houses/house-edit', ['house' => $house]);
     }
 
-    public function update(Request $request, int $id)
+    public function update(HouseStoreRequest $request, int $id)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'min:2', 'max:255'],
-            'description' => ['max:255'],
-        ]);
-
         $house = Auth::user()->houses->find($id);
+        $cityId = null;
+
+        if ($request->input('city')) {
+            $cityId = City::where([
+                'full_name' => $request->input('city'),
+            ])->first()->id;
+        }
+
         $house->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
+            'city_id' => $cityId,
+            'address' => $request->input('address'),
         ]);
+
         $house->save();
 
         return redirect()->action([HouseController::class, 'index']);
