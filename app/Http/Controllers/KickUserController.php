@@ -17,6 +17,6 @@ class KickUserController extends Controller
             $house->users()->detach($user_id);
         }
 
-        return back(200);
+        return back();
     }
 }

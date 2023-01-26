@@ -54,7 +54,7 @@ class HouseInviteController extends Controller
 
         $message = 'Successfully invited user '.$user->username.' to join the house';
 
-        return view('houses/house', ['house' => $house, 'me' => Auth::user(), 'message' => $message]);
+        return redirect()->back()->with('message', $message);
     }
 
     public function destroy(DestroyHouseInviteRequest $request, int $id)

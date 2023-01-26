@@ -21,7 +21,7 @@
                                 <p class="text-lg font-bold">{{$user->username}}</p>
                                 <p class="text-gray-700">{{$user->pivot->user_role}}</p>
                             </div>
-                            @if ($user->pivot->user_role === 'owner' && $user->id !== $me->id)
+                            @if ($house->pivot->user_role === 'owner' && $user->id !== $me->id)
                                 <form method="POST" action="/houses/kick">
                                     @csrf
                                     <input name="id" value="{{$house->id}}" type="hidden"/>
@@ -51,9 +51,9 @@
 
                             <x-primary-button>Invite</x-primary-button>
 
-                            @isset ($message)
+                            @if (session()->has('message'))
                                 <div>
-                                    <p>{{ $message }}</p>
+                                    <p>{{ session()->get('message') }}</p>
                                 </div>
                             @endisset
                         </form>
