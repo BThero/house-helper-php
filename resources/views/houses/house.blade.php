@@ -13,25 +13,29 @@
             <livewire:house-header :house="$house"/>
             <div class="p-6 text-gray-900 sm:px-6 lg:px-8 ">
                 <div>
-                    <p class="text-lg">Members:</p>
+                    <p class="text-lg mb-2">Members:</p>
                     @foreach ($house->users as $user)
                         <div
-                            class="flex flex-row justify-between items-center border-2 border-black p-2 rounded-lg">
+                            class="mb-2 flex flex-row justify-between items-center border-2 border-black p-2 h-14 rounded-lg">
                             <div class="flex flex-row items-center justify-start gap-2">
                                 <p class="text-lg font-bold">{{$user->username}}</p>
                                 <p class="text-gray-700">{{$user->pivot->user_role}}</p>
                             </div>
-                            @if ($user->id != $me->id)
-                                <div>
+                            @if ($user->pivot->user_role === 'owner' && $user->id !== $me->id)
+                                <form method="POST" action="/houses/kick">
+                                    @csrf
+                                    <input name="id" value="{{$house->id}}" type="hidden"/>
+                                    <input name="user_id" value="{{$user->id}}" type="hidden"/>
                                     <button
-                                        class="border-2 border-red-500 rounded-lg hover:text-red-500 p-1 pl-2 pr-2">
+                                        class="border-2 border-red-500 rounded-lg hover:text-red-500 p-1 pl-2 pr-2"
+                                    >
                                         Kick out
                                     </button>
-                                </div>
+                                </form>
                             @endif
                         </div>
                     @endforeach
-                    <div class="mt-3">
+                    <div class=" mt-3">
                         <form method="POST" action="{{ route('house-invites.store') }}"
                               class="flex flex-col m-auto w-[50%] gap-2">
                             @csrf
@@ -53,9 +57,9 @@
                                 </div>
                             @endisset
                         </form>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </x-app-layout>
